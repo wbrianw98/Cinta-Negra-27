@@ -30,14 +30,10 @@ const UserSchema = new Schema({
         type:String,
         enum: ["Male", "Female"]
     },
-    susbscription_id:{
+    subscription_id:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "subscriptions"
     },
-    liked:[{
-        type: Schema.Types.ObjectId,
-        ref:""
-    }],
     profile_image:{
         type: String
     },
