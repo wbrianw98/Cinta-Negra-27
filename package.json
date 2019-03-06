@@ -4,8 +4,8 @@
   "description": "API en Graphql de cinta negra",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "node app/app.js",
+    "test": "jest --detectOpenHandles",
+    "start": "nodemon app/app.js",
     "watch": "nodemon -e js,graphql --exec 'npm run lint and npm start'",
     "lint": "eslint app/"
   },
@@ -21,6 +21,7 @@
     "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.4",
     "graphql-yoga": "^1.17.4",
+    "jest": "^24.1.0",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.4.14",
     "morgan": "^1.9.1",

@@ -2,20 +2,19 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const { SECRET_KEY } = require("../config");
-const { createUser, getUserByEmail } = require("../actions/userActions");
+const { createUser, getUserByEmail } = require("./userActions");
 
-//expiracion de token
 Date.prototype.addDays = function (days) {
     var date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
     return date
 }
 
-const createToken = ({email, first_name, id}) => {
-    const exp = new Date().addDays(1).getTime();
+const createToken = ({ email, first_name, _id }) => {
+    const exp = new Date().addDays(2).getTime();
 
     const payload = {
-        id,
+        _id,
         email,
         first_name,
         exp
@@ -34,12 +33,14 @@ const signup = (data) => {
     });
 };
 
-const login = ({email, password}) => {
+const login = ({ email, password }) => {
     return new Promise((resolve, reject) => {
         getUserByEmail(email).then((user) => {
-            bcrypt.compare(password, user.password, (error, isValid) => {
-                if(error) reject(error);
-                isValid ? resolve(createToken(user)) : reject(new Error("Password does not match"));
+            bcrypt.compare(password, user.password, (err, isValid) => {
+                if (err) reject(err);
+                isValid ?
+                    resolve(createToken(user)) :
+                    reject(new Error("Password does not match..."));
             })
         }).catch(reject);
     });

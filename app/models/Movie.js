@@ -7,26 +7,35 @@ const MoiveSchema = new Schema({
 		type: String,
 		required: true
 	},
-	category: {
-		type:String,
-        enum:['COMEDIA','DRAMA','TERROR', 'ACCION'],
-        required:true
+	duration:{
+        	type:Number
 	},
-	author: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
-	available: {
+	categories: {
+		type:String,
+        	enum:['COMEDIA','DRAMA','TERROR', 'ACCION'],
+        	required:true
+	},
+	sinopsis:{
+		type:String
+	},
+	is_active: {
 		type: Boolean,
 		default: true
 	},
-	anio:String,
-    sinopsis:String,
-    duracion:{
-        type:Number,
-        default:90
-    }
+	cover:{
+		type:String
+	},
+	movie_url:{
+		type:String
+	},
+	director: {
+		type: String,
+		required: true
+	}
 }, { "collection": "movie", "timestamps": true });
 
 mongoose.Types.ObjectId.prototype.valueOf = function () {
 	return this.toString();
 };
 
-module.exports = mongoose.model("movie", PeliculaSchema);
+module.exports = mongoose.model("movie", MoiveSchema);

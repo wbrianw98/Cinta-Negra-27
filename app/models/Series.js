@@ -1,30 +1,43 @@
-const mongoose =  require('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const SerieSchema = new Schema({
-    "title":{
+    title:{
         type:String,
         required:true
     },
-    "seasson":{
+    seasson:{
         type:String,
         required:true
     },
-    "chapter":{
+    episodes:{
         type:String,
         required:true,
     },
-    "sinopsis":{
+    categories: {
+		type:String,
+        enum:['COMEDIA','DRAMA','TERROR', 'ACCION'],
+        required:true
+	},
+    sinopsis:{
         type:String,
         required:true
-    },      
-    "poster":{
-        type:String,
     },    
-    "video":{
-        type:String,
-        required:true
+    director: {
+        type: String,
+        required: true
+    },
+    is_active: {
+		type: Boolean,
+		default: true
+	},
+    video:{
+        type:String
     }
 });
+
+mongoose.Types.ObjectId.prototype.valueOf = function () {
+	return this.toString();
+};
 
 module.exports =  mongoose.model('Series', SerieSchema);

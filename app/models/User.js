@@ -30,9 +30,9 @@ const UserSchema = new Schema({
         type:String,
         enum: ["Male", "Female"]
     },
-    subscription_id:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "subscriptions"
+    subscription:{
+        type:String,
+        enum:["BASIC", "GOLD", "PREMIUM"]
     },
     profile_image:{
         type: String
