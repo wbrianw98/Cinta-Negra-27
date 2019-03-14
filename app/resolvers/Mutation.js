@@ -35,6 +35,7 @@ const updateUser = (_, args, context, info) => {
 
 const createMovie = (_,args,context,info) => {
     return actions.createMovie(args.data).then((movie) => {
+        context.pubsub.publish("NEWMOVIE", {newMovie: movie})
         return movie.toObject()
     }).catch((err) => {throw err;})
 }

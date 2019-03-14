@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 const { db } = require("./config");
 const pubsub = new PubSub();
 
-
 mongoose.connect(db.url, {useNewUrlParser: true});
 const mongo = mongoose.connection;
 

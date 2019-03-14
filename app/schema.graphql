@@ -26,16 +26,21 @@ type Mutation{
     # upgradeSubscription(type:Subscriptions!):String
 }
 
-enum Subscriptions {
-    BASIC
-    GOLD
-    PREMIUM
+# enum Subscriptions {
+#     BASIC
+#     GOLD
+#     PREMIUM
+# }
+
+type Subscription{
+    newMovie: Movie!
+    # newPost: typeNewPost!
 }
 
 type Auth{
     token:String
     menssage:String
-    Subscriptions:String
+    # Subscriptions:String
 }
 
 type User{
